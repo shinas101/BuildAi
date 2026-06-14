@@ -4,6 +4,7 @@ import { Zap } from 'lucide-react'
 import { Show , SignInButton , SignUpButton , UserButton } from '@clerk/nextjs'
 import { Button } from './ui/button'
 import { ArrowRight } from 'lucide-react'
+import PricingModal from './PricingModal'
 
 const Header = () => {
   return (
@@ -13,10 +14,12 @@ const Header = () => {
             <div className="flex items-center gap-5">
                 <Show when="signed-in">
                     <Link href={"/projects"} className="text-[13px] font-medium text-muted-foreground">Projects</Link>
+                        <PricingModal>
                         <span className="inline-flex h-8 items-center rounded-md bg-white/5  px-2 py-1 text-xs font-medium text-muted-foreground">
                             <Zap className="inline mr-1 fill-red-500/70 stroke-0" size={16} />
                              3 / 40 credits
                         </span>
+                        </PricingModal>
                     <UserButton />
                 </Show>
                 

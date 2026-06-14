@@ -5,11 +5,13 @@ import {StarsBackground} from "@/components/animate-ui/components/backgrounds/st
 import { GrayTitle , RedTitle, SectionHeading, SectionLabel } from "@/components/reusable";
 import { cn } from "@/lib/utils";
 import  {useEffect, useRef, useState} from "react";
-import { SignInButton, useAuth } from "@clerk/nextjs";
+import { PricingTable, SignInButton, useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { FEATURES, PLACEHOLDERS, STEPS, SUGGESTIONS } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { ArrowRight }  from "lucide-react";
+import { ArrowRight,ChevronRight }  from "lucide-react";
+import { DrawerRoot } from "@base-ui/react";
+
 
 export default function Home() {
   const {isSignedIn} = useAuth();
@@ -312,6 +314,51 @@ export default function Home() {
             No credit card required. Upgrade or downgrade anytime.
           </p>
         </div>
+        <div className="mx-auto max-w-5xl">
+          <PricingTable
+          checkoutProps={
+            {
+              appearance:{
+                elements:
+                {
+                  drawerRoot: {
+                    zIndex:2000,
+                  }
+                }
+              }
+            }
+          }/>
+        </div>
+      </section>
+
+      <section className="relative mx-auto mb-32 max-w-5xl overflow-hidden rounded-2xl border border-white/8 px-10 py-24 text-center">
+        <StarsBackground
+          className="absolute inset-0 h-full w-full"
+          style={{
+            maskImage:
+              "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
+          }}
+        />
+
+        <SectionHeading gray="Start building," blue="for free." />
+
+        <p className="mb-8 text-sm leading-relaxed text-white/40">
+          Get 10 free generations on sign up. No credit card required.
+          <br />
+          Upgrade when you&apos;re ready.
+        </p>
+
+        <SignInButton mode="modal">
+          <Button
+            size="lg"
+            className="relative h-11 rounded-full bg-white px-8"
+          >
+            Get started free
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </SignInButton>
       </section>
     </main>
   );
